@@ -25,10 +25,26 @@
         </h2>
     </c:if>
 
-    <c:forEach var="movie" items="${movies}"  >
-        <div>
-            Movie: <c:out value = "${movie.name}"/>
-            <img src="${contextPath}/resources/image/posters/${movie.poster}"/>
+<c:forEach var="movie" items="${movies}"  >
+        <div class="d-inline">
+            Movie: <c:out value = "${movie.name}"/>  <img src="${contextPath}/resources/image/posters/${movie.poster}" width="150" height="200"/>
+
+            <br>
+            Описание: <c:out value = "${movie.description}"/>
+            <br>
+            Режиссёр:<c:out value = "${movie.director}"/>
+            <br>
+            Продолжительность:<c:out value = "${movie.duration}"/>
+            <br>
+            Возрастной рейтинг:<c:out value = "${movie.age_bracket}"/>
+            <br>
+            Genres:
+            <c:forEach var="genre" items="${movie.genres}"  >
+                <div class="d-inline">
+                    <c:out value = "${genre.name}"/>
+                </div>
+            </c:forEach>
+
         </div>
     </c:forEach>
 
