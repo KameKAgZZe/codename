@@ -24,11 +24,12 @@
         <form id="logoutForm" method="post" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-        <h2>Admin Page ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
+        <h2>Admin Page ${pageContext.request.userPrincipal.name} </h2>
             <form id="addfilmbutton" method="get" action="${contextPath}/addfilm">
 
             </form>
             <h2>Admin Page ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['addfilmbutton'].submit()">add film</a>
+                <a onclick="document.forms['logoutForm'].submit()">Logout</a>
         </h2>
     </c:if>
 </div>
