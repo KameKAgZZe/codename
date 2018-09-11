@@ -1,0 +1,31 @@
+mail-sender.from: kame@mail.ru
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/booking?characterEncoding=UTF-8
+    username: root
+    password:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  jpa:
+    properties:
+      hibernate.id.new_generator_mappings: false
+  mail:
+    host: smtp.gmail.com
+    username: codenameteamtest@gmail.com
+    password: codenameteam
+    port: 465
+    protocol: smtps
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.starttls.enable: true
+    properties.mail.smtp.starttls.required: true
+    properties.mail.smtp.ssl.enable: true
+mail.debug: true
+upload.path: M:\booking\src\main\webapp\resources\image\posters
+server:
+  port: 8080
+cinema.name: Звезда
+activation.link: http://localhost:8080/activate/
+restore.link: http://localhost:8080/restoring/
