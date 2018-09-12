@@ -33,14 +33,17 @@
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
             <input name="username" type="text" class="form-control" placeholder="Username"
-                   autofocus="true"  aria-label="Username" aria-describedby="basic-addon1" id="username"/>
+                   autofocus="true" aria-label="Username" aria-describedby="basic-addon1" id="username"/>
 
+            <div class="input-group mb-3">
+                <input name="password" type="password" class="form-control pwd" placeholder="Password" required>
+                <div class="input-group-append">
+            <span class="input-group-append">
+             <button class="btn btn-default reveal" type="button"><i class="fa fa-eye" id="eye"></i></button>
+            </span>
 
-                    <input name="password" type="password" class="form-control pwd" placeholder="Password" required>
-
-            <span class="input-group-btn">
-            <button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
-          </span>
+                </div>
+            </div>
 
 
 
@@ -58,14 +61,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 <!-- /container -->
-<script>$(".reveal").on('click',function() {
+<script>
+
     var $pwd = $(".pwd");
-    if ($pwd.attr('type') === 'password') {
+    var $eye = $("#eye");
+$(".reveal")
+    .mousedown( function () {
+        $eye.removeClass("fa-eye");
+        $eye.addClass("fa-eye-slash");
         $pwd.attr('type', 'text');
-    } else {
+        }
+    )
+    .mouseup( function () {
+        $eye.removeClass("fa-eye-slash");
+        $eye.addClass("fa-eye");
         $pwd.attr('type', 'password');
-    }
-});</script>
+});
+
+</script>
 
 </body>
 </html>
