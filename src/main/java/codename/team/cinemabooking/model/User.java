@@ -33,6 +33,8 @@ public class User {
     private boolean active;
     @Column(name = "activationcode")
     private String activationCode;
+    @Column(name = "restorationcode")
+    private String restorationCode;
 
     @ManyToMany
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
@@ -93,5 +95,13 @@ public class User {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public String getRestorationCode() {
+        return restorationCode;
+    }
+
+    public void setRestorationCode(String restorationCode) {
+        this.restorationCode = restorationCode;
     }
 }

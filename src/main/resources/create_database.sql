@@ -6,7 +6,8 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     email    VARCHAR(255) NOT NULL,
     active BOOLEAN NOT NULL DEFAULT FALSE,
-    activationcode VARCHAR(255)
+    activationcode VARCHAR(255),
+    restorationcode VARCHAR(255)
     )
 ENGINE InnoDB;
 

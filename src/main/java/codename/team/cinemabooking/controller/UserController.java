@@ -47,6 +47,7 @@ public class UserController {
 
         return "restore";
     }
+    //TODO: Need make refactoring this method and check active status user. If user not active, redirect to page with resend button activation code.
     @RequestMapping(value ="/restorecheck", method = RequestMethod.POST)
     public String restore(Model model, @RequestParam("email") String email) {
 
@@ -89,12 +90,10 @@ public class UserController {
         return "redirect:/confirm";
     }
     @RequestMapping(value ="/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout, String fail){
-        if (fail != null) {
-            model.addAttribute("error", "Пользователь не был активирован.");
-        }
+    public String login(Model model, String error, String logout){
+
             if (error != null) {
-                model.addAttribute("error", "Логин и/или пароль не корректны.");
+                model.addAttribute("error", "Данные для входа не корректны, либо пользователь не активировал свой аккаунт   .");
             }
             if (logout != null) {
                 model.addAttribute("message", "Вы успешно вышли!");
@@ -139,6 +138,7 @@ public class UserController {
 
         return "redirect:/welcome";
     }
+    //TODO: create method userService.restorateUser(String code)
     @GetMapping("/restoring/{code}")
     public String restoring(Model model, @PathVariable String code){
         boolean isActivate = userService.activateUser(code);
