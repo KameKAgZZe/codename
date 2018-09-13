@@ -21,32 +21,31 @@
 <div class="container">
     <c:if test="${pageContext.request.userPrincipal.name != null}">
 
-        <h2>${pageContext.request.userPrincipal.name} добавил фильм
+        <h2>${pageContext.request.userPrincipal.name}
         </h2>
     </c:if>
-
-<c:forEach var="movie" items="${movies}"  >
+<form action="/user" method="post">
         <div class="d-inline">
-            Movie: <c:out value = "${movie.name}"/>  <img src="${contextPath}/resources/image/posters/${movie.poster}" width="150" height="200"/>
+            Movie: <input type="text" name="moviename" value = "${movie.name}"/>
 
             <br>
-            Описание: <c:out value = "${movie.description}"/>
+            Описание:<input type="text" name="description" value = "${movie.description}"/>
+            <c:out value = "${movie.description}"/>
             <br>
-            Режиссёр:<c:out value = "${movie.director}"/>
+            Режиссёр:<input type="text" name="director" value = "${movie.director}"/>
             <br>
-            Продолжительность:<c:out value = "${movie.duration}"/>
+            Продолжительность:<input type="time" name="duration" value = "${movie.duration}"/>
             <br>
-            Возрастной рейтинг:<c:out value = "${movie.age_bracket}"/>
+            Возрастной рейтинг:<input type="text" name="age_bracket" value = "${movie.age_bracket}"/>
             <br>
             Genres:
             <c:forEach var="genre" items="${movie.genres}"  >
                 <div class="d-inline">
-                    <c:out value = "${genre.name}"/>
+                    <label><input type="checkbox" name="${genre.name}">${genre.name}</label>
                 </div>
             </c:forEach>
-            <a href="/movie/${movie.id}"> edit</a>
-        </div>
-    </c:forEach>
+
+        </div></form>
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

@@ -102,7 +102,7 @@ CREATE TABLE booking_place (
     Engine InnoDB;
 INSERT INTO roles VALUES (1,'ROLE_USER');
 INSERT INTO roles VALUES (2,'ROLE_ADMIN');
-INSERT INTO users VALUES (1,'admin', '$2a$11$iZEbj0X9ypdXODxwdkYgPuLBcV8FCxToD.7A.6YqrEXpEOnq7BqF.', 'admin@localhost.ru',true , '08dbabc5-1154-49e7-8ece-b3b1f6dacd30', NULL );
+INSERT INTO users VALUES (1,'admin', '$2a$11$iZEbj0X9ypdXODxwdkYgPuLBcV8FCxToD.7A.6YqrEXpEOnq7BqF.', 'admin@localhost.ru',true , NULL, NULL );
 INSERT INTO genres VALUES (1,'Ужасы');
 INSERT INTO genres VALUES (2,'Экшн');
 INSERT INTO genres VALUES (3,'Боевик');
