@@ -39,9 +39,9 @@
             Возрастной рейтинг:<input type="text" name="age_bracket" value = "${movie.age_bracket}"/>
             <br>
             Genres:
-            <c:forEach var="genre" items="${movie.genres}"  >
+            <c:forEach var="genre" items="${genres}"  >
                 <div class="d-inline">
-                    <label><input type="checkbox" name="${genre.name}">${genre.name}</label>
+                    <label><input type="checkbox" name="${genre.name}" <%=movie.genres.contains(genre) ? "checked" : ""%>>${genre.name}</label>
                 </div>
             </c:forEach>
 
