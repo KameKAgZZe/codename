@@ -39,5 +39,5 @@ public class Genre {
         this.name = name;
     }
 
-
+    //todo: Добавь Equals and hashcode
 }
