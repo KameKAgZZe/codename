@@ -70,6 +70,16 @@ public class AdminContoller {
     @GetMapping("/movie/{movie}")
     public String movieEditForm(@PathVariable Movie movie, Model model) {
         model.addAttribute("movie", movie);
+        model.addAttribute("genres", movieService.genreList());
+        return "movieEdit";
+    }
+
+    @PostMapping(value = "/movie/{movie}", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String saveMovie(@PathVariable Movie movie, ChangedMovie changedMovie, Model model) {
+        changedMovie.applyChanges(movie);
+        movieService.save(movie);
+        model.addAttribute("movie", movie);
+        model.addAttribute("genres", movieService.genreList());
         return "movieEdit";
     }
 }
