@@ -42,6 +42,14 @@
     </div>
     <br>
     <form action="/book" method="POST">
+        <c:choose>
+            <c:when test="${pageContext.request.userPrincipal == null && pageContext.request.userPrincipal.name == null}">
+                Введите свой email <input type="email" required class="form-control">
+
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            </c:when>
+
+        </c:choose>
         <button class ="btn btn-primary btn-lg btn-block">Забронировать</button>
     </form>
 </div>

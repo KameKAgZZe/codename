@@ -50,7 +50,7 @@
                                 <form id="logoutForm" method="POST" action="${contextPath}/logout">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                ${pageContext.request.userPrincipal.name}   <h7 class="text-center">| <a onclick="document.forms['logoutForm'].submit()"><i class="fa fa-sign-out"></i>Выйти</a></h7>
+                                ${pageContext.request.userPrincipal.name}   <h7 class="text-center">| <a onclick="document.forms['logoutForm'].submit()">ВЫЙТИ</a></h7>
                             </c:when>
                             <c:otherwise>
 
