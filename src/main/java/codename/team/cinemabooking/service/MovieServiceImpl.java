@@ -7,9 +7,7 @@ import codename.team.cinemabooking.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class MovieServiceImpl implements MovieService{
@@ -37,4 +35,11 @@ public class MovieServiceImpl implements MovieService{
     public List<Genre> genreList() {
         return genreDao.findAll();
     }
+
+    @Override
+    public List<String> ageBracketList() {
+        return Arrays.asList("0+", "6+", "12+","16+","18+");
+    }
+
+
 }

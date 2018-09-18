@@ -14,6 +14,8 @@ public class ChangedMovie {
     private String age_bracket;
     private String duration;
     private Set<Genre> genres;
+    private boolean popular;
+    private String poster;
 
     public void applyChanges(Movie movie) {
         movie.setName(name);
@@ -22,6 +24,7 @@ public class ChangedMovie {
         movie.setDirector(director);
         movie.setDuration(duration);
         movie.setGenres(genres);
+        movie.setPopular(popular);
     }
 
     public void setName(String name) {
@@ -47,4 +50,14 @@ public class ChangedMovie {
     public void setGenres(Set<Genre> genres) {
         this.genres = genres;
     }
+
+    public boolean isPopular() {
+        return popular;
+    }
+
+    public void setPopular(boolean popular) {
+        this.popular = popular;
+    }
+
+
 }

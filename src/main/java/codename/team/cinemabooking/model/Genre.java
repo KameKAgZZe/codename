@@ -53,5 +53,4 @@ public class Genre {
 
         return Objects.hash(id);
     }
-    //todo: Добавь Equals and hashcode
 }

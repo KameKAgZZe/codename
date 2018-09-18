@@ -17,6 +17,7 @@
     <title>Welcome</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -25,8 +26,8 @@
         <h2>${pageContext.request.userPrincipal.name}
         </h2>
     </c:if>
-<form:form action="/movie/${movie.id}" method="post" modelAttribute="movie"  enctype="application/x-www-form-urlencoded">
-    <input name="id" value="${movie.id}" type="hidden">
+    <form:form action="/movie/${movie.id}" method="post" modelAttribute="movie"  enctype="multipart/form-data">
+        <input name="id" value="${movie.id}" type="hidden">
         <div class="d-inline">
             Movie: <input type="text" name="name" value = "${movie.name}"/>
 
@@ -40,23 +41,32 @@
             <br>
             Возрастной рейтинг:
             <form:select path="age_bracket" class="form-control" id="age" required="true">
+                <c:forEach var="age_bracket" items="${age_brackets}">
 
-            <option value="0+">0+</option>
-            <option value="6+">6+</option>
-            <option value="12+" selected>12+</option>
-            <option value="16+">16+</option>
-            <option value="18+">18+</option>
-        </form:select>
+                    <option value="${age_bracket}" <c:if test="${movie.age_bracket.contains(age_bracket)}"> selected</c:if>>${age_bracket}</option>
+                </c:forEach>
+            </form:select>
             <br>
+            <spring:bind path="poster">
+            <label for="posterFile">Чтобы сменить картинку нажмите на неё.<img src="${contextPath}/resources/image/posters/${movie.poster}" width="100" height="150"></label>
+                <input type="file" name="posterFile" class="form-control" id="posterFile"accept="image/*">
+
+            <style>#poster{display:none}</style>
+            <br>
+            </spring:bind>>
             Genres:
             <div class="d-inline">
-            <c:forEach var="genre" items="${genres}"  >
-                <label><input type="checkbox" name="genres" <c:if test="${movie.genres.contains(genre)}"> checked</c:if>
-                     value="${genre.id}">${genre.name}</label>
-            </c:forEach>
+                <c:forEach var="genre" items="${genres}"  >
+                    <label><input type="checkbox" name="genres" <c:if test="${movie.genres.contains(genre)}"> checked</c:if>
+                                  value="${genre.id}">${genre.name}</label>
+                </c:forEach>
             </div>
+            <br>
+            <label><input type="checkbox" name="popular" id="popular" <c:if test="${movie.popular == true}"> checked</c:if>">популярный?</label>
             <button type="submit">Save</button>
-        </div></form:form>
+        </div>
+
+    </form:form>
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

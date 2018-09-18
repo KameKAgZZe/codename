@@ -1,8 +1,9 @@
 package codename.team.cinemabooking.controller;
 
-import codename.team.cinemabooking.model.Genre;
 import codename.team.cinemabooking.model.Movie;
+import codename.team.cinemabooking.model.Session;
 import codename.team.cinemabooking.service.MovieService;
+import codename.team.cinemabooking.service.SessionService;
 import codename.team.cinemabooking.validator.MovieValidator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Set;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 @Controller
@@ -26,7 +27,10 @@ public class AdminContoller {
     @Value("${upload.path}")
     private String uploadPath;
     @Autowired
+    private SessionService sessionService;
+    @Autowired
     private MovieService movieService;
+
     @Autowired
     private MovieValidator movieValidator;
 
@@ -35,27 +39,52 @@ public class AdminContoller {
     public String admin(Model admin) {
         return "admin";
     }
+    @RequestMapping(value = "/addsession", method = RequestMethod.GET)
+    public String addsession(Model model) {
+        model.addAttribute("movies", movieService.movieList());
+        model.addAttribute("rooms", sessionService.roomList());
+        model.addAttribute("sessionForm", new Session());
+        return "addsession";
+    }
+    @RequestMapping(value = "/addsession/{movie}", method = RequestMethod.GET)
+    public String addsession(Model model, @PathVariable Movie movie) {
+        model.addAttribute("movieEditId", movie);
+        model.addAttribute("movies", movieService.movieList());
+        model.addAttribute("rooms", sessionService.roomList());
+        model.addAttribute("sessionForm", new Session());
+        return "addsession";
+    }
+    @PostMapping(value = "/addsession")
+    public String addsession(@ModelAttribute("sessionForm") Session sessionForm, @RequestParam("dateForm") String dateForm, Model model) throws IOException {
+        sessionForm.setDate(Timestamp.valueOf(dateForm.replace("T"," ")+":00"));
+        sessionService.save(sessionForm);
+        return "redirect:/complete";
 
-    @RequestMapping(value = "/addfilm", method = RequestMethod.GET)
-    public String addfilm(Model model) {
+    }
+    @RequestMapping(value = "/addfilm")
+    public String addfilm(){
+        return "redirect:/addmovie";
+    }
+    @RequestMapping(value = "/addmovie", method = RequestMethod.GET)
+    public String addmovie(Model model) {
         model.addAttribute("genres", movieService.genreList());
         model.addAttribute("movieForm", new Movie());
-        return "addfilm";
+        return "addmovie";
     }
 
-    @PostMapping(value = "/addfilm", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String addfilm(@ModelAttribute("movieForm") Movie movieForm, @RequestParam("posterFile") MultipartFile file, BindingResult bindingResult, Model model) throws IOException {
-        movieValidator.validate(movieForm, bindingResult);
 
-        //todo: save poster to database
+    @PostMapping(value = "/addmovie", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String addmovie(@ModelAttribute("movieForm") Movie movieForm, @RequestParam("posterFile") MultipartFile file, BindingResult bindingResult, Model model) throws IOException {
+        movieValidator.validate(movieForm, bindingResult);
         movieForm.setPoster(UUID.randomUUID().toString() + "_" + file.getOriginalFilename());
         Files.createDirectories(Paths.get(uploadPath));
         File filePath = new File(uploadPath, movieForm.getPoster());
 
         file.transferTo(filePath);
         if (bindingResult.hasErrors()) {
-            return "addfilm";
+            return "addmovie";
         }
+        movieForm.setPopular(false);
         movieService.save(movieForm);
         return "redirect:/complete";
 
@@ -69,17 +98,29 @@ public class AdminContoller {
 
     @GetMapping("/movie/{movie}")
     public String movieEditForm(@PathVariable Movie movie, Model model) {
+        model.addAttribute("age_brackets", movieService.ageBracketList());
         model.addAttribute("movie", movie);
         model.addAttribute("genres", movieService.genreList());
         return "movieEdit";
     }
 
-    @PostMapping(value = "/movie/{movie}", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String saveMovie(@PathVariable Movie movie, ChangedMovie changedMovie, Model model) {
+    @PostMapping(value = "/movie/{movie}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String saveMovie(@PathVariable Movie movie, ChangedMovie changedMovie, Model model,@RequestParam("posterFile")  MultipartFile file, BindingResult bindingResult) {
+        if(file != null){
+            File filePath = new File(uploadPath, movie.getPoster());
+            filePath.delete();
+            movie.setPoster(UUID.randomUUID().toString() + "_" + file.getOriginalFilename());
+            filePath = new File(uploadPath, movie.getPoster());
+            try {
+                file.transferTo(filePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
         changedMovie.applyChanges(movie);
         movieService.save(movie);
-        model.addAttribute("movie", movie);
-        model.addAttribute("genres", movieService.genreList());
-        return "movieEdit";
+
+        return "redirect:/complete";
     }
 }

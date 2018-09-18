@@ -2,8 +2,6 @@ package codename.team.cinemabooking.model;
 
 
 import javax.persistence.*;
-import java.sql.Time;
-import java.time.Duration;
 import java.util.Set;
 
 @Entity
@@ -24,8 +22,8 @@ public class Movie {
     private String duration;
     @Column(name = "poster")
     private String poster;
-
-
+    @Column(name = "popular")
+    private boolean popular;
 
     @ManyToMany
     @JoinTable(name = "movie_genres", joinColumns = @JoinColumn(name = "movie_id"),
@@ -93,5 +91,13 @@ public class Movie {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isPopular() {
+        return popular;
+    }
+
+    public void setPopular(boolean popular) {
+        this.popular = popular;
     }
 }

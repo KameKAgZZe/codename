@@ -4,7 +4,7 @@ DROP TABLE booking;
 DROP TABLE users;
 DROP TABLE roles;
 DROP TABLE movie_genres;
-DROP TABLE session;
+DROP TABLE sessions;
 DROP TABLE movies;
 DROP TABLE genres;
 DROP TABLE row;

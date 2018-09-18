@@ -10,4 +10,5 @@ public interface MovieService {
     Movie findByName(String name);
     public List<Movie> movieList();
     public List<Genre> genreList();
+    public List<String> ageBracketList();
 }

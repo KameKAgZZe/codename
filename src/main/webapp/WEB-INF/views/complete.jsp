@@ -16,6 +16,7 @@
     <title>Welcome</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -25,9 +26,10 @@
         </h2>
     </c:if>
 
-<c:forEach var="movie" items="${movies}"  >
+    <c:forEach var="movie" items="${movies}"  >
         <div class="d-inline">
-            Movie: <c:out value = "${movie.name}"/>  <img src="${contextPath}/resources/image/posters/${movie.poster}" width="150" height="200"/>
+            Movie: <c:out value = "${movie.name}"/>
+            <img src="${contextPath}/resources/image/posters/${movie.poster}" width="150" height="200"/>
 
             <br>
             Описание: <c:out value = "${movie.description}"/>
@@ -43,10 +45,23 @@
                 <div class="d-inline">
                     <c:out value = "${genre.name}"/>
                 </div>
+
+
+
+
+                <br>
             </c:forEach>
             <a href="/movie/${movie.id}"> edit</a>
+            <a href="/addsession/${movie.id}"> add session</a>
+            <br>
+            <label>
+                <c:if test="${movie.popular == true}"> популярный</c:if>
+                <c:if test="${movie.popular != true}"> непопулярный</c:if>
+            </label>
         </div>
+        <br>
     </c:forEach>
+
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
