@@ -85,7 +85,7 @@ CREATE TABLE booking (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     session_id INT NOT NULL,
-    date DATE NOT NULL,
+    date TIMESTAMP NOT NULL,
 
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (session_id) REFERENCES sessions(id)
@@ -93,10 +93,10 @@ CREATE TABLE booking (
 
     Engine InnoDB;
 
-CREATE TABLE booking_place (
+CREATE TABLE places (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     booking_id INT NOT NULL,
     place INT NOT NULL,
-
     FOREIGN KEY (booking_id) REFERENCES booking(id)
 )
 

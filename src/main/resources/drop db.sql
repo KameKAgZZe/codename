@@ -1,5 +1,5 @@
 DROP TABLE user_roles;
-DROP TABLE booking_place;
+DROP TABLE places;
 DROP TABLE booking;
 DROP TABLE users;
 DROP TABLE roles;

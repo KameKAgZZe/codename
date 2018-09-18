@@ -54,6 +54,7 @@ public class AdminContoller {
         model.addAttribute("sessionForm", new Session());
         return "addsession";
     }
+    @RequestMapping(value = "/addsession/{movie}", method = RequestMethod.POST)
     @PostMapping(value = "/addsession")
     public String addsession(@ModelAttribute("sessionForm") Session sessionForm, @RequestParam("dateForm") String dateForm, Model model) throws IOException {
         sessionForm.setDate(Timestamp.valueOf(dateForm.replace("T"," ")+":00"));
@@ -65,6 +66,7 @@ public class AdminContoller {
     public String addfilm(){
         return "redirect:/addmovie";
     }
+
     @RequestMapping(value = "/addmovie", method = RequestMethod.GET)
     public String addmovie(Model model) {
         model.addAttribute("genres", movieService.genreList());
