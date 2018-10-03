@@ -41,6 +41,7 @@ CREATE TABLE movies(
     age_bracket VARCHAR(20) NOT NULL DEFAULT '12+',
     duration VARCHAR(20) NOT NULL,
     poster VARCHAR(255) NOT NULL,
+    status VARCHAR (255) NOT NULL,
     popular BOOLEAN NOT NULL
 
 )
@@ -75,6 +76,7 @@ CREATE TABLE sessions (
     room_id INT NOT NULL,
     date TIMESTAMP NOT NULL,
     price DECIMAL(10,2) NOT NULL,
+    status VARCHAR (255) NOT NULL,
     FOREIGN KEY (movie_id) REFERENCES movies(id),
     FOREIGN KEY (room_id) REFERENCES room(id)
 )
@@ -83,7 +85,7 @@ CREATE TABLE sessions (
 
 CREATE TABLE booking (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
+    user_id INT,
     session_id INT NOT NULL,
     date TIMESTAMP NOT NULL,
 
@@ -96,7 +98,7 @@ CREATE TABLE booking (
 CREATE TABLE places (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     booking_id INT NOT NULL,
-    place INT NOT NULL,
+    place VARCHAR(255) NOT NULL,
     FOREIGN KEY (booking_id) REFERENCES booking(id)
 )
 

@@ -54,6 +54,8 @@
             <a href="/movie/${movie.id}"> edit</a>
             <a href="/addsession/${movie.id}"> add session</a>
             <br>
+            <label>${movie.status}</label>
+            <br>
             <label>
                 <c:if test="${movie.popular == true}"> популярный</c:if>
                 <c:if test="${movie.popular != true}"> непопулярный</c:if>

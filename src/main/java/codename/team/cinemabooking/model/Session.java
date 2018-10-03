@@ -24,6 +24,8 @@ public class Session {
    private Timestamp date;
    @Column(name = "price")
     private BigDecimal price;
+    @Column(name = "status")
+    private String status;
 
     public Long getId() {
         return id;
@@ -65,5 +67,13 @@ public class Session {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

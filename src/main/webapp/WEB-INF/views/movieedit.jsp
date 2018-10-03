@@ -53,7 +53,11 @@
 
             <style>#poster{display:none}</style>
             <br>
-            </spring:bind>>
+            </spring:bind>
+            <form:select path="status" class="form-control" id="status" required="true">
+                    <option value="new" <c:if test="${movie.status.contains('new')}"> selected</c:if>>Новый</option>
+                <option value="old" <c:if test="${movie.age_bracket.contains('old')}"> selected</c:if>>Старый</option>
+            </form:select>
             Genres:
             <div class="d-inline">
                 <c:forEach var="genre" items="${genres}"  >

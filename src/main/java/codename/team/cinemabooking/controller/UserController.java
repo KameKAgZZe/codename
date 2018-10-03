@@ -1,5 +1,6 @@
 package codename.team.cinemabooking.controller;
 
+import codename.team.cinemabooking.model.Booking;
 import codename.team.cinemabooking.model.Session;
 import codename.team.cinemabooking.model.User;
 import codename.team.cinemabooking.service.MailSender;
@@ -9,13 +10,15 @@ import codename.team.cinemabooking.service.UserService;
 import codename.team.cinemabooking.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.UUID;
 
 @Controller
@@ -37,15 +40,7 @@ public class UserController {
     private String activationLink;
     @Value("${restore.link}")
     private String restoreLink;
-    @RequestMapping(value = "/", method = RequestMethod.GET)
 
-    public String index() {
-        return "index";
-    }
-    @RequestMapping(value ="/index", method = RequestMethod.GET)
-    public String index(Model model){
-        return "index";
-    }
     @RequestMapping(value ="/restore", method = RequestMethod.GET)
     public String restore(Model model, String error, String logout){
 
@@ -134,6 +129,7 @@ public class UserController {
         boolean isActivate = userService.activateUser(code);
         if(isActivate){
             model.addAttribute("message","Пользователь был активирован");
+            //TODO  clean code
 //            securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
         }
         else{
@@ -157,11 +153,7 @@ public class UserController {
 
         return "redirect:/restore";
     }
-    @GetMapping("/booking/{session}")
-    public String bookingForm(@PathVariable Session session,Model model){
-        model.addAttribute("session", session);
-        model.addAttribute("rows",sessionService.rowList(session.getRoom()));
-        return "booking";
-    }
+
+
 
 }

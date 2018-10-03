@@ -39,13 +39,7 @@ public class AdminContoller {
     public String admin(Model admin) {
         return "admin";
     }
-    @RequestMapping(value = "/addsession", method = RequestMethod.GET)
-    public String addsession(Model model) {
-        model.addAttribute("movies", movieService.movieList());
-        model.addAttribute("rooms", sessionService.roomList());
-        model.addAttribute("sessionForm", new Session());
-        return "addsession";
-    }
+
     @RequestMapping(value = "/addsession/{movie}", method = RequestMethod.GET)
     public String addsession(Model model, @PathVariable Movie movie) {
         model.addAttribute("movieEditId", movie);
@@ -55,13 +49,14 @@ public class AdminContoller {
         return "addsession";
     }
     @RequestMapping(value = "/addsession/{movie}", method = RequestMethod.POST)
-    @PostMapping(value = "/addsession")
     public String addsession(@ModelAttribute("sessionForm") Session sessionForm, @RequestParam("dateForm") String dateForm, Model model) throws IOException {
         sessionForm.setDate(Timestamp.valueOf(dateForm.replace("T"," ")+":00"));
+        sessionForm.setStatus("ready");
         sessionService.save(sessionForm);
         return "redirect:/complete";
 
     }
+
     @RequestMapping(value = "/addfilm")
     public String addfilm(){
         return "redirect:/addmovie";
@@ -87,6 +82,7 @@ public class AdminContoller {
             return "addmovie";
         }
         movieForm.setPopular(false);
+        movieForm.setStatus("new");
         movieService.save(movieForm);
         return "redirect:/complete";
 
@@ -103,22 +99,20 @@ public class AdminContoller {
         model.addAttribute("age_brackets", movieService.ageBracketList());
         model.addAttribute("movie", movie);
         model.addAttribute("genres", movieService.genreList());
-        return "movieEdit";
+        return "movieedit";
     }
 
     @PostMapping(value = "/movie/{movie}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String saveMovie(@PathVariable Movie movie, ChangedMovie changedMovie, Model model,@RequestParam("posterFile")  MultipartFile file, BindingResult bindingResult) {
+    public String saveMovie(@PathVariable Movie movie, ChangedMovie changedMovie, Model model,@RequestParam("posterFile")  MultipartFile file, BindingResult bindingResult) throws IOException {
         if(file != null){
             File filePath = new File(uploadPath, movie.getPoster());
             filePath.delete();
             movie.setPoster(UUID.randomUUID().toString() + "_" + file.getOriginalFilename());
             filePath = new File(uploadPath, movie.getPoster());
-            try {
-                file.transferTo(filePath);
-            } catch (IOException e) {
-                e.printStackTrace();
+            file.transferTo(filePath);
+            if (bindingResult.hasErrors()) {
+                return "addmovie";
             }
-
         }
         changedMovie.applyChanges(movie);
         movieService.save(movie);

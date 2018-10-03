@@ -15,7 +15,7 @@
     <meta name="author" content="">
 
     <div xmlns:sec="http://www.springframework.org/security/tags"/>
-    <title>GoKino</title>
+    <title>${cinema_name}</title>
 
     <link rel="stylesheet" href="${contextPath}/resources/css/font-awesome.min.css">
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -34,13 +34,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-3 col-12">
-                        <div class="logo"><img src="${contextPath}/resources/images/logo.png" alt="logo"></div>
+                        <div class="logo"><img src="${contextPath}/resources/image/logo.png" alt="logo"></div>
                     </div>
                     <div class="col-sm-6">
                         <div class="nav d-flex justify-content-around">
                             <span><a href="#">СЕАНСЫ</a></span>
-                            <span><a href="#">О НАС</a></span>
-                            <span><a href="#">КОНТАКТЫ</a></span>
+                            <span><a href="${contextPath}/about">О НАС</a></span>
+                            <span><a href="${contextPath}/contacts">КОНТАКТЫ</a></span>
                         </div>
                     </div>
                     <div class="col-sm-3 col-12">
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="col-7">
-                    <img src="${contextPath}/resources/images/map.png" alt="">
+                    <img src="${contextPath}/resources/image/map.png" alt="">
                 </div>
             </div>
         </div>
@@ -111,7 +111,7 @@
                                 <div class="film-content ">
                                     <span class="t-white">Перейти к фильму</span>
                                 </div>
-                                <img src="${contextPath}/resources/images/pop1.png" alt="f">
+                                <img src="${contextPath}/resources/image/pop1.png" alt="f">
                             </a>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                                 <div class="film-content ">
                                     <span class="t-white">Перейти к фильму</span>
                                 </div>
-                                <img src="${contextPath}/resources/images/pop1.png" alt="f">
+                                <img src="${contextPath}/resources/image/pop1.png" alt="f">
                             </a>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                                 <div class="film-content ">
                                     <span class="t-white">Перейти к фильму</span>
                                 </div>
-                                <img src="${contextPath}/resources/images/pop1.png" alt="f">
+                                <img src="${contextPath}/resources/image/pop1.png" alt="f">
                             </a>
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                                 <div class="film-content ">
                                     <span class="t-white">Перейти к фильму</span>
                                 </div>
-                                <img src="${contextPath}/resources/images/pop1.png" alt="f">
+                                <img src="${contextPath}/resources/image/pop1.png" alt="f">
                             </a>
                         </div>
                     </div>
@@ -156,7 +156,7 @@
                 </div>
                 <div class="col-4">
                     <div class="poch">
-                        <img src="${contextPath}/resources/images/pochemu1.png" alt="">
+                        <img src="${contextPath}/resources/image/pochemu1.png" alt="">
                         <span class="poch-text">
 							Персональный консьерж,
 							который возьмет на себя организацию
@@ -166,7 +166,7 @@
                 </div>
                 <div class="col-4">
                     <div class="poch">
-                        <img src="${contextPath}/resources/images/pochemu2.png" alt="">
+                        <img src="${contextPath}/resources/image/pochemu2.png" alt="">
                         <span class="poch-text">
 							Возможность посещать премьеры
 							и закрытые показы самых популярных
@@ -176,7 +176,7 @@
                 </div>
                 <div class="col-4">
                     <div class="poch">
-                        <img src="${contextPath}/resources/images/pochemu3.png" alt="">
+                        <img src="${contextPath}/resources/image/pochemu3.png" alt="">
                         <span class="poch-text">
 							Возможность арендовать целиком
 							большие и маленькие залы, рассчитанные
@@ -213,7 +213,7 @@
             <div class="row">
                 <div class="col-5">
                     <div class="logo-footer">
-                        <img src="${contextPath}/resources/images/logo-footer.png" alt="">
+                        <img src="${contextPath}/resources/image/logo-footer.png" alt="">
                     </div>
                 </div>
                 <div class="col-7 justify-content-between flex-wrap">
@@ -224,9 +224,9 @@
                             <span><a href="#">КОНТАКТЫ</a></span>
                         </div>
                         <div class="social d-flex justify-content-between">
-                            <a href=""><img src="${contextPath}/resources/images/soc-vk.png" alt="vk"></a>
-                            <a href=""><img src="${contextPath}/resources/images/soc-fb.png" alt="fb"></a>
-                            <a href=""><img src="${contextPath}/resources/images/soc-tw.png" alt="t"></a>
+                            <a href=""><img src="${contextPath}/resources/image/soc-vk.png" alt="vk"></a>
+                            <a href=""><img src="${contextPath}/resources/image/soc-fb.png" alt="fb"></a>
+                            <a href=""><img src="${contextPath}/resources/image/soc-tw.png" alt="t"></a>
                         </div>
                     </div>
                     <div class="footer-botoom-cont">
@@ -235,7 +235,7 @@
                             <span>+7(3124)84-87-88</span>
                         </div>
                         <div class="justify-content-between">
-                            <span>© Кинотеатр «GoКино». Все права защищены.</span>
+                            <span>© Кинотеатр «${cinema_name}». Все права защищены.</span>
                             <span>Политика конфиденциальности</span>
                         </div>
                     </div>

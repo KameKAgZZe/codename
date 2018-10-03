@@ -24,7 +24,9 @@ public class Movie {
     private String poster;
     @Column(name = "popular")
     private boolean popular;
-
+    @Column(name = "status")
+    private String status;
+    //TODO release date field
     @ManyToMany
     @JoinTable(name = "movie_genres", joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id"))
@@ -99,5 +101,13 @@ public class Movie {
 
     public void setPopular(boolean popular) {
         this.popular = popular;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

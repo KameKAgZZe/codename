@@ -4,6 +4,7 @@ package codename.team.cinemabooking.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Entity
 @Table(name = "booking")
@@ -19,7 +20,8 @@ public class Booking {
     private Session session;
    @Column(name = "date")
    private Timestamp date;
-
+   @OneToMany
+   private Set<Place> place;
     public Long getId() {
         return id;
     }
@@ -50,5 +52,13 @@ public class Booking {
 
     public void setDate(Timestamp date) {
         this.date = date;
+    }
+
+    public Set<Place> getPlace() {
+        return place;
+    }
+
+    public void setPlace(Set<Place> place) {
+        this.place = place;
     }
 }

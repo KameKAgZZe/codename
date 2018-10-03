@@ -61,7 +61,7 @@
         </div>
 
 <spring:bind path="price">
-    <form:input type="number" path="price"  class="form-control"  placeholder="Цена билета" min="0" max="1000" step="0.01" value="" name="price" id="price" required="required" />
+    <form:input type="number" path="price"  class="form-control"  placeholder="Цена билета" min="0" max="1000" step="1.00" value="" name="price" id="price" required="required" />
         </spring:bind>
 
         <input  type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

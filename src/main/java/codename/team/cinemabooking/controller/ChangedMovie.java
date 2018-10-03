@@ -16,6 +16,7 @@ public class ChangedMovie {
     private Set<Genre> genres;
     private boolean popular;
     private String poster;
+    private String status;
 
     public void applyChanges(Movie movie) {
         movie.setName(name);
@@ -25,6 +26,7 @@ public class ChangedMovie {
         movie.setDuration(duration);
         movie.setGenres(genres);
         movie.setPopular(popular);
+        movie.setStatus(status);
     }
 
     public void setName(String name) {
@@ -59,5 +61,7 @@ public class ChangedMovie {
         this.popular = popular;
     }
 
-
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

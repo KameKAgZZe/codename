@@ -1,3 +1,4 @@
+<%@ page import="codename.team.cinemabooking.model.Place" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=utf-8" %>
@@ -28,20 +29,24 @@
     дата: ${session.date}
     <br>
     <% Integer rowCount = 0;%>
+    <spring:bind path="place">
     <c:forEach var="row" items="${rows}">
         <%=++rowCount%>
         <div class="d-inline">
         <c:forEach var="i" begin="1" end="${row.place_in_row}">
-            <button class ="btn btn-primary " id="button<%=rowCount%>${i}" onclick="clickButton(<%=rowCount%>${i})">${i}</button>
+            <label for="button<%=rowCount%>${i}">${i}</label>
+
+            <input type="checkbox" name="place" class ="btn btn-primary " id="button<%=rowCount%>${i}"  value="${row.id}_${i}" onclick="clickButton(<%=rowCount%>${i})">
         </c:forEach>
         </div>
         <br>
     </c:forEach>
+    </spring:bind>
     <br>
     <div class="calcPrice">Цена: <div id="price"></div>
     </div>
     <br>
-    <form action="/book" method="POST">
+    <form action="/booking/${session.id}" method="POST">
         <c:choose>
             <c:when test="${pageContext.request.userPrincipal == null && pageContext.request.userPrincipal.name == null}">
                 Введите свой email <input type="email" required class="form-control">
