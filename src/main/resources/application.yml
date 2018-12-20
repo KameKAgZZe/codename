@@ -23,9 +23,9 @@ spring:
     properties.mail.smtp.starttls.required: true
     properties.mail.smtp.ssl.enable: true
 mail.debug: true
-upload.path: M:\booking\src\main\webapp\resources\image\posters
+upload.path: M:\cd_booking\src\main\webapp\resources\image\posters
 server:
   port: 8080
-cinema.name: Звезда
+cinema.name: GoКино
 activation.link: http://localhost:8080/activate/
 restore.link: http://localhost:8080/restoring/

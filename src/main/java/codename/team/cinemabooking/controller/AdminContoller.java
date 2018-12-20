@@ -91,6 +91,7 @@ public class AdminContoller {
     @RequestMapping(value = "/complete", method = RequestMethod.GET)
     public String complete(Model model, String movie_name) {
         model.addAttribute("movies", movieService.movieList());
+        model.addAttribute("session",sessionService.sessionList());
         return "complete";
     }
 

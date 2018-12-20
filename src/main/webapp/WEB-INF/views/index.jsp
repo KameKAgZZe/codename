@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="nav d-flex justify-content-around">
-                            <span><a href="#">СЕАНСЫ</a></span>
+                            <span><a href="${contextPath}/complete">СЕАНСЫ</a></span>
                             <span><a href="${contextPath}/about">О НАС</a></span>
                             <span><a href="${contextPath}/contacts">КОНТАКТЫ</a></span>
                         </div>
@@ -219,9 +219,9 @@
                 <div class="col-7 justify-content-between flex-wrap">
                     <div class="footer-top-cont justify-content-between">
                         <div class="nav nav-footer d-flex justify-content-between">
-                            <span><a href="#">СЕАНСЫ</a></span>
-                            <span><a href="#">О НАС</a></span>
-                            <span><a href="#">КОНТАКТЫ</a></span>
+                            <span><a href="${contextPath}/complete">СЕАНСЫ</a></span>
+                            <span><a href="${contextPath}/about">О НАС</a></span>
+                            <span><a href="${contextPath}/contacts">КОНТАКТЫ</a></span>
                         </div>
                         <div class="social d-flex justify-content-between">
                             <a href=""><img src="${contextPath}/resources/image/soc-vk.png" alt="vk"></a>

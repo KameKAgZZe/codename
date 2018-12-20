@@ -26,7 +26,7 @@ public class Movie {
     private boolean popular;
     @Column(name = "status")
     private String status;
-    //TODO release date field
+
     @ManyToMany
     @JoinTable(name = "movie_genres", joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id"))

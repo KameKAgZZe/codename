@@ -20,8 +20,16 @@ public class Booking {
     private Session session;
    @Column(name = "date")
    private Timestamp date;
-   @OneToMany
-   private Set<Place> place;
+   private String isChecked;
+
+    public String getIsChecked() {
+        return isChecked;
+    }
+
+    public void setIsChecked(String isChecked) {
+        this.isChecked = isChecked;
+    }
+
     public Long getId() {
         return id;
     }
@@ -54,11 +62,4 @@ public class Booking {
         this.date = date;
     }
 
-    public Set<Place> getPlace() {
-        return place;
-    }
-
-    public void setPlace(Set<Place> place) {
-        this.place = place;
-    }
 }

@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -45,7 +46,7 @@ public class PageController {
         return "booking";
     }
     @PostMapping("/booking/{session}")
-    public String bookingForm(Booking booking, @PathVariable Session session, Model model){
+    public String bookingForm(@RequestParam List<String> isChecked, Booking booking, @PathVariable Session session, Model model){
 
         session.getRoom();
         booking.setSession(session);
